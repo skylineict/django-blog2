@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from os import path
 from pathlib import Path
 from pathlib import os
+import django_heroku
+from whitenoise import WhiteNoise
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +29,7 @@ SECRET_KEY = 'django-insecure-7u&s-6r^b&#_ku#kebc&tb!09^ahb&2)3n62k+nsm(bio05(n4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['skylineblog.herokuapp.com']
 EMAIL_HOST = 'mail.cooperatefund.com'
 EMAIL_HOST_USER = 'testing@cooperatefund.com'
 EMAIL_HOST_PASSWORD = 'Monoskey93'
@@ -90,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'whitenoise.middleware.WhiteNoiseMiddleware',
                 'blogapp.views.category_list',
                 'blogapp.views.mypost',
 
@@ -161,6 +165,8 @@ STATICFILES_DIRS = [
 
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # adding the crispy form
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -171,3 +177,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'singup.Registration'
+django_heroku.settings(locals())
