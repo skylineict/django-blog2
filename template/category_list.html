@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}Category page{% endblock %}
+
+  </head>
+  <body>
+    {% block content %}
+
+  
+ <div class="container">
+  
+
+   {% for cat in mycatlist %}
+   </br>
+   <a href="category/{{cat.name}}">{{cat.name}}<a/>
+   </br>
+  {% comment %} <a  href="{% url "categorylist" cat.category %}"{{cat}} {% endcomment %}
+  </br>
+   {% endfor %}
+    {% comment %} {% for category  in category_list  %}
+     <a href="category_list/"> {{ category| safe }}</a>
+      
+     
+      {% endfor %}
+     {% endcomment %}
+      <hr />
+    </div>
+
+    {% endblock %}
+
+   
+  </body>
+</html>

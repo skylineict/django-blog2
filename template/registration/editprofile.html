@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}users Registration{% endblock  %}
+{% load crispy_forms_tags %}
+
+
+  </head>
+  <body>
+    {% block content %}
+
+   
+    <div class="container" style="
+    padding-top: 39px;
+">
+    <div style="border:3px solid #ddd;font-family: Arial, Helvetica, sans-serif;font-size:17px;padding:41px 25px 25px 25px;">
+    <form action="#" method="POST"enctype='multipart/form-data'>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+ 
+  <strong>{{ message.tags }}{% endif %}</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+    {% endif %}
+      {% csrf_token %} 
+       {{ form|crispy }}
+
+  <button type="submit" class="btnn">Update</button>
+</form>
+   </div>
+  </div>
+     {% endblock %}
+  </body>
+</html>

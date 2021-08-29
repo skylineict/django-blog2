@@ -1,0 +1,156 @@
+<!DOCTYPE html
+
+<head>
+{% extends 'header.html' %}{% block title %}{{ view_post.title }}{% endblock %}
+{% load static %}
+</head>
+
+  
+
+  <body>
+    {% block content %}
+
+    {% load hitcount_tags %} 
+  <div class="container">
+    <div class="row">
+             
+      
+       <div class="col-md-10 blogShort" style="
+       padding-top: 20px;">
+                     
+                       <img src="{{ view_post.image.url }}" alt="{{view_post.title}}" class="rounded mx-auto d-block"  height="400" width="400" class="pull-right img-responsive postImg img-thumbnail margin10">
+                       <p><h1 class="text-justify"> {{ view_post.title | safe }}</h1></p>
+
+
+                       <p  class="text-justify">{{ view_post.body | safe }}</p>
+
+
+  <!--                        <a href="https://bootsnipp.com/fork/ZkexO" id="reboot" class="btn btn-default tip" title="Copy this snippet"><span class="glyphicon glyphicon-retweet"></span> Fork this</a>-->
+        
+        <form method="POST" action="{% url 'bloglike' view_post.id %}">  
+        <div id="action-bar" style="display: inline-block">
+          By: {{user.username}} on <span> {{ view_post.date}} </span>
+            <a href="#" class="btn btn-default disabled"><i class="far fa-eye"></i>  {%  get_hit_count for view_post  %} view</a>
+            <a href="#comments" class="btn btn-default tip" title="" data-original-title="View comments"><i class="icon-comment"></i>&nbsp;</a>
+                {% if user.is_authenticated %}
+                
+                    {% csrf_token %}   
+
+                    {% if post_likes %}  
+                     <button type="submit"name="blogpost_id"value="{{view_post.id}}" class="btn btn-default btn-sm">
+                     <span class="fas fa-thumbs-up"></span> unLike</button>  
+                     {% else %}
+                     <button type="submit"name="blogpost_id"value="{{view_post.id}}" class="btn btn-default btn-sm">
+                      <span class="fas fa-thumbs-up"></span> Like</button>  
+                      {% endif %}
+                  {% if post_likes   %}
+  <strong class="text-secondary">{{ number_of_likes }} Like</strong>
+                    {% endif %}
+
+                    <div class="card mb-3" style="max-width: 540px;">
+  
+        {% else %}
+        
+          
+<a href="{% url 'login' %}" >Login</a> To this post 
+
+
+
+                                 
+  {% endif %}
+  
+  
+                    
+                    
+                     
+                     </form>
+
+
+<div class="row no-gutters">
+  {% if  view_post.author.image %}
+    <div class="col-md-4">
+     
+      <img src="{{ view_post.author.image.url }}" alt="..." width="200" height="200">
+    </div>
+
+
+    {% else %}
+      <div class="col-md-4">
+      <img src="{% static 'profile/icon.jpg' %}"width="200" height="200">  
+    </div>
+
+    {% endif %}
+    <div class="col-md-8" >
+      <div class="card-body">
+      {% if  view_post.author.firstname %}
+        <h5 class="card-title">{{view_post.author.firstname}}</h5>
+
+        
+        {% endif %}
+      
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+         {% if  view_post.author.facebook %}
+        <small class="text-muted"><a href="{{ view_post.author.facebook }}"> faceboook |</a>  </small>
+         {% endif %}
+
+           <small class="text-muted"><a href="{{ view_post.author.instagram }}">Instagram | </a>  </small>
+              <small class="text-muted"><a href="{{ view_post.author.facebook }}">Twitter | </a>  </small>
+               <small class="text-muted"><a href="{% url 'show_profile' view_post.author.id %}">view profile | </a>  </small>
+      </div>
+    </div>
+  </div>
+</div>
+        
+   {% for p in puporlar %}
+
+{% comment %}    {% endcomment %}
+<ul>
+<li>{{ p.title}}</li> <br/>
+</ul>
+   {% endfor %}
+ 
+ </p>
+        
+                  </div>
+                      </div>
+                       
+                       </article>
+                  
+                
+    </div>
+ 
+
+   
+     
+    
+
+   {% if view_post.comments %}
+  
+    {% for comment in view_post.comments.all %}
+    <div class="container"> 
+    <p class="text-mute">{{comment.your_comment}}</p>
+     <p class="text-mute">{{comment.name}}</p>
+
+      <p class="text-mute">{{comment.date}}</p
+     
+         </div>>
+   
+     
+       
+
+    {% endfor %}
+    {% else %}
+    <div class="container">
+    <h1 class="text-mute"> you have not comment </h1>
+    </div>
+ {% endif %}
+   <h1>you have {{view_post.comments.count}}</h1>
+     
+     <div class="container">  <h1 class="fs-5 text-mute"><a href="{% url 'comment' view_post.pk %}">add comment</a></h1>    </div>
+     
+    {% endblock %}
+
+
+   
+  </body>
+</html>

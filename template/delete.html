@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}{{ view_post.title }}{% endblock %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+
+  </head>
+  <body>
+    {% block content %}
+<br/>
+
+
+ {% if mydeletepost.author.id == user.id %}
+  <div class="container">
+<form method="post" class="big"">{% csrf_token %}
+ <div class="form-group">
+ <p> Are you sure you want to delete? <b style="color:red;"> {{ object }}</b></p>
+   
+ <button type="submit" class="btn btn-primary">delete</button>
+  </div>
+   </form>
+   </div>
+ {% else %}
+   <p>post not found on this page</p>
+   {% endif %}
+   
+  
+     {% endblock %}
+  </body>
+</html>

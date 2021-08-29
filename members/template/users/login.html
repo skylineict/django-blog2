@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}users Registration{% endblock  %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+
+  </head>
+  <body>
+    {% block content %}
+<br/>
+<h1> Create Account </h1>
+  <div class="container">
+<form method="post" class="big"">{% csrf_token %}
+ <div class="form-group">
+  {{ form.as_p }}
+ <button type="submit" class="btn btn-primary">Login</button>
+  </div>
+   </form>
+   </div>
+   
+  
+     {% endblock %}
+  </body>
+</html>

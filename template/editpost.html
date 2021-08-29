@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}{{ view_post.title }}{% endblock %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+
+  </head>
+  <body>
+    {% block content %}
+  <div class="container">
+<br/>
+
+
+{% if post.author.id == user.id %}
+
+<h1> edit page for {{ post.author}} |</h1>
+  <div class="container">
+<form method="post" class="big"">{% csrf_token %}
+ <div class="form-group">
+  {{ form.as_p }}
+ <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+   </form>
+   </div>
+
+   {% else %}
+   <p>sorry this post is not accessable</p>
+{% endif %}
+
+
+
+
+
+
+
+
+
+   </div>
+   
+  
+     {% endblock %}
+  </body>
+</html>

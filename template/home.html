@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>tesing my page</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="" />
+</head>
+
+
+<body>
+
+  {% block content %}
+
+  <main>
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for list in list_post %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ list.image.url }}">
+              <div class="card-body">
+              
+                 <p class="card-text"> {{list.body|slice:":200" | safe }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    
+
+                    <a type="button" class="btn btn-sm btn-outline-secondary"
+                      href="{% url 'category' list.category.name %}">{{ list.category | slugify }}</a>
+                      {% if list.author.id == user.id %}
+                    <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'edit' list.id %}">Edit</a>
+                    {% endif %}
+                    <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'info'  list.id %}">view
+                      Post</a>
+                      
+
+                      {% if list.author.id == user.id %}
+                    <a type=" button" class="btn btn-sm btn-outline-secondary" href="{% url 'delete' list.id %}"">delete Post</a>
+                    {% endif %}
+                  </div>
+                  <br/>
+                 
+  
+                  <small class=" text-muted">{{list.date}}</small>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor%}
+
+
+          </div>
+        </div>
+  </main>
+
+
+
+
+  {% endblock %}
+
+  <script src="" async defer></script>
+</body>
+
+</html>

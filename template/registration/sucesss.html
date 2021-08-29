@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}users Registration{% endblock  %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+
+  </head>
+  <body>
+    {% block content %}
+    <div class="container" style="
+    padding-top: 39px;
+">
+    <div style="border:3px solid #ddd;font-family: Arial, Helvetica, sans-serif;font-size:17px;padding:41px 25px 25px 25px;">
+    <form action="#" method="POST">
+      {% csrf_token %} 
+  <button type="submit" class="btnn">Register</button>
+</form>
+   </div>
+  </div>
+     {% endblock %}
+  </body>
+</html>

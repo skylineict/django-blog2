@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      input[type="text"],
+      [type="email"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+      }
+
+      input[type="submit"] {
+        background-color: #04aa6d;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+<div class="container">
+    <h3>Contact Form</h3>
+    <div class="alert alert-warning" role="alert">
+  <p>fill the form below to and sumbit, an email acknowelledgment wiill be send to you </p>
+</div>
+    </div>
+
+    <div class="container">
+      <form action="#" method="POST">
+        {% csrf_token %} 
+        {% if form.full_name.errors %}
+         {% for errors in form.full_name.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error!</strong> {{ errors|escape }}
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        {% endfor %} {% endif %}
+
+        <label for="fname">First Name</label>
+        {{form.full_name}} {% if form.phone.errors %} {% for errors in form.phone.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error!</strong> {{ errors|escape }}
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        {% endfor %} {% endif %}
+        <label for="lname">Phone</label>
+        {{ form.phone}} 
+        {% if form.email.errors %} 
+        {% for errors in form.email.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error!</strong> {{ errors|escape }}
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        {% endfor %} 
+        {% endif %}
+
+        <label for="lname">email</label>
+        {{ form.email}} 
+        {% if form.purpose.errors %} 
+        {% for errors in form.purpose.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error!</strong> {{ errors|escape }}
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        {% endfor %} {% endif %}
+
+        <label for="country">purpose</label>
+        {{form.purpose}} {% if form.comment.errors %} 
+        {% for errors in form.comment.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error!</strong> {{ errors|escape }}
+          <button type="button" class="close" data-dismiss="alert">
+            &times;
+          </button>
+        </div>
+
+        {% endfor %} {% endif %}
+
+        <label for="subject">Subject</label>
+        {{ form.comment}}
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
+
+<!-- <form method="POST"> -->
+<!-- {% csrf_token %} -->
+<!-- <ul> -->
+<!--  -->
+<!-- <li>{{ form.full_name}} </li> -->
+<!-- <li>{{ form.phone}}</li> -->
+<!-- <li> {{ form.email}}</li> -->
+<!-- <li>{{form.purpose}}</li> -->
+<!-- </li> {{ form.comment}}</li> -->
+<!-- </ul> -->
+
+<!-- <button type="submit" class="btnn">Register</button> -->
+<!-- </p> -->
+<!-- </form> -->
+
+<!-- </div> -->
+<!-- </div> -->

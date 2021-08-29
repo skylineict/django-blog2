@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}{% block title %}users Registration{% endblock  %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+
+  </head>
+  <body>
+    {% block content %}
+    <div class="container" style="
+    padding-top: 39px;
+">
+    <div style="border:3px solid #ddd;font-family: Arial, Helvetica, sans-serif;font-size:17px;padding:41px 25px 25px 25px;">
+    <form action="#" method="POST">
+      {% csrf_token %} 
+  <h2>Register Form</h2>
+{% if form.username.errors %}
+  {% for errors in form.username.errors %}
+
+
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Error!</strong> {{ errors|escape }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+
+{% endfor %}
+{% endif %}
+       
+     <div class="input-container">
+       <i class="fa fa-user icon"></i>
+       {{ form.username }}
+      </div>
+
+
+
+
+
+ <!-- <div class="alert alert-danger"> -->
+              <!-- <strong>{{ form.email.errors|escape }}</strong> -->
+          <!-- </div> -->
+
+  {% if form.email.errors %}
+  {% for errors in form.email.errors %}
+
+
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Error!</strong> {{ errors|escape }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+
+
+   {% endfor %}
+    {% endif %}
+
+  <div class="input-container">
+    <i class="fa fa-envelope  icon"></i>
+   {{form.email}}
+  </div>
+
+ {% if form.comfirm_email.errors %}
+ {% for errors in form.comfirm_email.errors %}
+   <div class="alert alert-danger alert-dismissible fade show">
+       <strong>Error!</strong> {{ errors|escape }}
+       <button type="button" class="close" data-dismiss="alert">&times;</button>
+   </div>
+  {% endfor %}
+   {% endif %}
+
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+   {{form.comfirm_email}}
+  </div>
+
+
+
+{% if form.password1.errors %}
+{% for errors in form.password1.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    {{form.password1}}
+  </div>
+
+{% if form.password2.errors %}
+{% for errors in form.password2.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    {{form.password2}}
+  </div>
+
+{% if form.office_address.errors %}
+{% for errors in form.office_address.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+  
+  <div class="input-container">
+    <i class="fa fa-address-book icon"></i>
+   {{form.office_address}}
+  </div>
+
+{% if form.firstname.errors %}
+{% for errors in form.firstname.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+  
+
+  <div class="input-container">
+    <i class="fa fa-users icon"></i>
+   {{form.firstname}}
+  </div>
+
+{% if form.lastname.errors %}
+{% for errors in form.lastname.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+  <div class="input-container">
+    <i class="fa fa-users icon"></i>
+   {{form.lastname}}
+  </div>
+
+{% if form.lastname.errors %}
+{% for errors in form.lastname.errors %}
+  <div class="alert alert-danger alert-dismissible fade show">
+      <strong>Error!</strong> {{ errors|escape }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+ {% endfor %}
+  {% endif %}
+
+  <div class="input-container">
+    <i class="fa fa-phone icon"></i>
+   {{form.phone }}
+  </div>
+  <div class="input-container">
+    <i class="fa fa-users  icon"></i>
+   {{form.city}}
+  </div>
+  <div class="input-container">
+    <i class="fa fa-users  icon"></i>
+   {{form.state}}
+  </div>
+
+  <button type="submit" class="btnn">Register</button>
+</form>
+   </div>
+  </div>
+     {% endblock %}
+  </body>
+</html>

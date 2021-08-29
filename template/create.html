@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}w
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+  </head>
+  <body>
+    {% block content %}
+<br/>
+
+ 
+ 
+  <div class="container">
+  
+
+<h1></h1>
+  
+
+  {% if user.is_authenticated %}
+    
+<form method="post" class="big" enctype="multipart/form-data">{% csrf_token %}
+ <div class="form-group">
+  {{ form.as_p }}
+ <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+   </form>
+
+
+  
+ <script>
+ var name = "{{user.id}}";
+	document.getElementById("username").value = name;  //hide
+	{% comment %} document.getElementById("id").style.display = "block"; //show {% endcomment %}
+	{% comment %} document.getElementById("id").style.display = ""; 	   //show {% endcomment %}
+</script>
+
+     {% else %}
+     
+   <h1 style="color:red;">you cannt access this page please click to <a href="{% url 'login' %}"> login </h1>
+   {% endif %}
+ 
+   </div>
+   
+  
+     {% endblock %}
+  </body>
+</html>
